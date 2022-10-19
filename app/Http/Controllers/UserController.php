@@ -13,7 +13,7 @@ class UserController extends Controller
 
     public function index(){
 
-        $users=User::paginate(2000);
+        $users=User::withcount('posts')->paginate(2000);
         return view('users.index',compact('users'));
     }
 

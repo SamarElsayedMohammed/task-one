@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +17,13 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('web.home');
+
+Route::post('/sign-in',[Controller::class, 'login'])->middleware('guest:web')->name('get.login');
+Route::get('/sign-in',[Controller::class, 'index'])->middleware('guest:web')->name('login');
+
+Route::middleware('auth:web')->group(function(){
+
 Route::get('/index',[PostController::class, 'index'])->name('post.index');
 Route::get('/create',[PostController::class, 'create'])->name('post.create');
 Route::post('/store',[PostController::class, 'store'])->name('post.store');
@@ -31,3 +38,5 @@ Route::post('user/store',[UserController::class, 'store'])->name('user.store');
 Route::get('user//edit/{id}',[UserController::class, 'edit'])->name('user.edit');
 Route::post('user/update/{id}',[UserController::class, 'update'])->name('user.update');
 Route::get('user/delete/{id}',[UserController::class, 'delete'])->name('user.delete');
+
+});

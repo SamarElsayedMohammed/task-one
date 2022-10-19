@@ -10,7 +10,7 @@ use App\Http\Requests\PostRequest;
 class PostController extends Controller
 {
     public function index(){
-        $posts =Post::paginate(25);
+        $posts =Post::with('user')->paginate(25);
         return view('index',compact('posts'));
 
     }

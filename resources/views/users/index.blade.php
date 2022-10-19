@@ -45,7 +45,7 @@
           <td>{{$index+1}}</td>
           <td>{{$user->name}}</td>
           <td>{{$user->email}}</td>
-          <td>{{$user->posts->count()}}</td>
+          <td>{{$user->posts_count}}</td>
           
           <td>
             <a href="{{route('user.edit',$user->id)}}" type="button" class="btn btn-success"><i class="fa fa-edit"></i></a>
